@@ -69,10 +69,13 @@ export default function App() {
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 5000); 
   };
-    const playTone = (freq: number, type: OscillatorType, duration: number, vol = 0.1) => { const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext; if (!AudioContextClass) return; const ctx = new AudioContextClass(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.type = type; osc.frequency.setValueAtTime(freq, ctx.currentTime); gain.gain.setValueAtTime(vol, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration); osc.connect(gain); gain.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + duration); }; const playTick = () => playTone(800, 'sine', 0.05, 0.03); const playStart = () => { playTone(600, 'triangle', 0.4, 0.1); setTimeout(() => playTone(800, 'triangle', 0.4, 0.1), 100); }; const playEnd = () => { playTone(500, 'square', 0.3, 0.1); setTimeout(() => playTone(700, 'square', 0.5, 0.15), 300); };
 
-  const formatTime = (seconds: number) => {
-      const mins = Math.floor(seconds / 60);
+    useEffect(() => {
+      if (currentSlide === slides.length - 1) {
+        triggerConfetti();
+      }
+    }, [currentSlide]);
+
       const secs = seconds % 60;
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
@@ -293,14 +296,12 @@ export default function App() {
 
          <div style={{marginTop: '4rem'}}>
            <motion.div
-             onClick={triggerConfetti}
-             style={{display: 'inline-block', cursor: 'pointer'}}
+             style={{display: 'inline-block'}}
              whileHover={{ scale: 1.2, rotate: [0, -10, 10, -10, 10, 0] }}
              transition={{ duration: 0.5 }}
            >
              <Trophy size={80} color="#FFB300" />
            </motion.div>
-           <p style={{ marginTop: '1rem', fontSize: '1rem', color: 'rgba(255,255,255,0.4)', fontWeight: 'bold', letterSpacing: '2px' }}>CLICK TO CELEBRATE</p>
          </div>
       </SlideCard>
     )
