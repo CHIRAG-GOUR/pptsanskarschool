@@ -381,7 +381,7 @@ export default function App() {
         }}
       >
         <img src="/Sanskar-Footer-logo.png" alt="Sanskar School" style={{ height: '80px', objectFit: 'contain' }} />
-        <img src="/skillizee-blue-logo.png" alt="Skillizee" style={{ height: '65px', objectFit: 'contain' }} />
+        <img src="/skillizee-blue-logo.png" alt="Skillizee" style={{ height: '45px', objectFit: 'contain' }} />
       </motion.header>
 
       {/* Floating Navigation Controls */}
