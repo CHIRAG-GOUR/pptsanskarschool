@@ -106,6 +106,9 @@ export default function App() {
     // SLIDE 2
     (
       <SlideCard>
+        <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }} style={{ position: 'absolute', top: '15%', right: '5%', opacity: 0.5, pointerEvents: 'none', transform: 'scale(0.5)' }}>
+           <GrowthAnalytics />
+        </motion.div>
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
           <Typewriter text="Will YOU be a better version of yourself this year?" className="title-main" />
           <span style={{color: '#0B66E4', animation: 'blink 1s step-end infinite', fontSize: '4.5rem', fontWeight: 800}}>|</span>
@@ -115,6 +118,9 @@ export default function App() {
     // SLIDE 3
     (
       <SlideCard>
+        <motion.div animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '10%', left: '-5%', opacity: 0.4, transform: 'scale(0.5)' }}>
+           <AbstractShapes />
+        </motion.div>
         <motion.div style={{ display: 'inline-block', marginBottom: '1rem' }} animate={{ rotate: [0, 5, -5, 0] }} transition={{ repeat: Infinity, duration: 3 }}>
           <Zap size={60} color="#FFB300" />
         </motion.div>
@@ -157,7 +163,9 @@ export default function App() {
     // SLIDE 7
     (
       <SlideCard>
-         
+         <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }} style={{ position: 'absolute', top: '10%', right: '10%', opacity: 0.6, pointerEvents: 'none', transform: 'scale(0.6)' }}>
+            <DigitalBuilder />
+         </motion.div>
          <h1 className="title-main" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}><Brain size={48} /> How would you make your school more fun?</h1>
          <div className="timer" style={{margin: '2rem 0'}}>{timer20}</div>
          <button className="skillizee-primary-btn" onClick={() => { playStart(); setTimer20(20); setActiveTimer('20s'); }}>
@@ -213,13 +221,6 @@ export default function App() {
     // SLIDE 11
     (
        <SlideCard>
-         <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }} style={{ position: 'absolute', top: '10%', right: '10%', opacity: 0.8, pointerEvents: 'none', transform: 'scale(0.6)' }}>
-            <DigitalBuilder />
-         </motion.div>
-         <motion.div animate={{ x: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '20%', left: '5%', opacity: 0.6, pointerEvents: 'none', transform: 'scale(0.5)' }}>
-            <CreativeIdea />
-         </motion.div>
-         
            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}>
                <Rocket size={48}/> <LettersPullUp text="Real-World Challenge" className="title-main" style={{ fontSize: '4.5rem', margin: 0}} />
          </div>
@@ -253,6 +254,9 @@ export default function App() {
     // SLIDE 14
     (
       <SlideCard>
+         <motion.div animate={{ x: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '10%', left: '5%', opacity: 0.5, pointerEvents: 'none', transform: 'scale(0.5)' }}>
+            <CreativeIdea />
+         </motion.div>
          <h2 className="subtitle" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Zap size={32}/> Future You</h2>
          <WordReveal text="What did you do this summer?" className="title-main" style={{justifyContent: 'center'}} />
          <div className="split-screen">
@@ -268,6 +272,12 @@ export default function App() {
     // SLIDE 15
     (
       <SlideCard>
+         <motion.div animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} style={{ position: 'absolute', top: '10%', left: '10%', opacity: 0.6, pointerEvents: 'none', transform: 'scale(0.5)' }}>
+            <AbstractShapes />
+         </motion.div>
+         <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '15%', right: '5%', opacity: 0.5, pointerEvents: 'none', transform: 'scale(0.6)' }}>
+            <DigitalBuilder />
+         </motion.div>
          <h2 className="subtitle" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Rocket size={32}/> The Experience</h2>
          <div className="grid-cards">
            <div className="info-card"><Target size={40} style={{marginBottom: '1rem', color: '#0cebeb'}}/><h3>Work on real challenges</h3></div>
