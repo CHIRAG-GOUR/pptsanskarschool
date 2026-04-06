@@ -1,196 +1,75 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap'; 
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Lenis from 'lenis';
-import { Brain, Smile, Zap, Target, ArrowRight, Rocket, MessageCircle, Lightbulb, Presentation, Trophy } from 'lucide-react';
+import { Brain, Smile, Zap, Target, Rocket, MessageCircle, Lightbulb, Presentation, Trophy, ChevronLeft, ChevronRight } from 'lucide-react';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
+import { DigitalBuilder, GrowthAnalytics, CreativeIdea } from './Illustrations';
+import { SchoolBackground } from './SchoolBackground';
+import { WordReveal, LetterBounce, Typewriter, GlitchText, ScalePopText, LettersPullUp } from './AnimatedTexts';
 
-import Antigravity from './Antigravity';
-// @ts-ignore
-import BorderGlow from './BorderGlow';
-
-gsap.registerPlugin(ScrollTrigger);
-
-// Interactive Card Wrapper Component
-function InteractiveCard({ children, className = '' }: { children: React.ReactNode, className?: string }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const card = cardRef.current;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    // Calculate rotation between -10 and 10 degrees based on mouse position inside the card
-    const multiplier = 20; // max rotation in degrees
-    const rotateY = multiplier * ((x - rect.width / 2) / (rect.width / 2));
-    const rotateX = -multiplier * ((y - rect.height / 2) / (rect.height / 2));
-    
-    card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    card.style.boxShadow = `${-rotateY}px ${rotateX}px 40px rgba(255, 255, 255, 0.15)`;
-    // Adding a shine effect based on mouse position
-    card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%)`;
-  };
-
-  const handleMouseLeave = () => {
-    if (!cardRef.current) return;
-    const card = cardRef.current;
-    card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-    card.style.boxShadow = `0 16px 40px rgba(0, 0, 0, 0.4)`;
-    card.style.background = `rgba(255, 255, 255, 0.05)`;
-  };
-
+function SlideCard({ children, className = '' }: { children: React.ReactNode, className?: string }) {
   return (
     <div 
-      className={`interactive-card-wrapper`}
-      style={{ perspective: '1200px', width: '100%', maxWidth: '900px' }}
+      className={`slide-card-wrapper`}
+      style={{ width: '100%', maxWidth: '1000px', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 auto' }}
     >
-      <BorderGlow
-        edgeSensitivity={30}
-        glowColor="40 80 80"
-        backgroundColor="rgba(255,255,255,0.05)"
-        borderRadius={30}
-        glowRadius={40}
-        glowIntensity={1}
-        coneSpread={25}
-        animated={false}
-        colors={['#ffffff', '#aaaaaa', '#ffffff']}
+      <div
+        className={`glass-card ${className}`}
+        style={{
+          width: '100%',
+          padding: '5rem 4rem',
+          borderRadius: '3rem',
+          background: 'rgba(0, 0, 0, 0.55)',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          boxShadow: '0 30px 60px -15px rgba(0, 0, 0, 0.7)',
+          backdropFilter: 'blur(24px)',
+          textAlign: 'center',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
       >
-        <div 
-          ref={cardRef} 
-          className={`glass-card interactive-card ${className}`}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          style={{ transition: 'transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease', width: '100%', height: '100%' }}
+        <motion.div
+           initial="hidden"
+           whileInView="visible"
+           viewport={{ once: false }}
+           variants={{
+             hidden: { opacity: 0, y: 40 },
+             visible: { 
+               opacity: 1, y: 0, 
+               transition: { type: "spring", bounce: 0.3, duration: 0.8, staggerChildren: 0.15 } 
+             }
+           }}
         >
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              hidden: { opacity: 0, y: 50, scale: 0.95, filter: "blur(10px)" },
-              visible: { 
-                opacity: 1, y: 0, scale: 1, filter: "blur(0px)",
-                transition: { type: "spring", bounce: 0.5, duration: 1.2, staggerChildren: 0.15 } 
-              }
-            }}
-          >
-            {React.Children.map(children, (child) => 
-               React.isValidElement(child) ? 
-               <motion.div variants={{
-                 hidden: { opacity: 0, y: 30, scale: 0.8 },
-                 visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", bounce: 0.6, duration: 1 } }
-               }}>
-                 {child}
-               </motion.div> : child
-            )}
-          </motion.div>
-        </div>
-      </BorderGlow>
+          {React.Children.map(children, (child) => 
+             React.isValidElement(child) ? 
+             <motion.div variants={{
+               hidden: { opacity: 0, y: 20 },
+               visible: { opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 0.8 } }
+             }}>
+               {child}
+             </motion.div> : child
+          )}
+        </motion.div>
+      </div>
     </div>
   );
 }
 
-function Section({ children, className = '', id }: { children: React.ReactNode, className?: string, id?: string }) {
-  return (
-    <section className={`section ${className}`} id={id}>
-      {children}
-    </section>
-  );
-}
-
 export default function App() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   
   const [timer5, setTimer5] = useState(5);
   const [timer20, setTimer20] = useState(20);
   const [timer120, setTimer120] = useState(120);
-
   const [activeTimer, setActiveTimer] = useState<string | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
   const { width, height } = useWindowSize();
 
-  useEffect(() => {
-    // Ultra-smooth scrolling setup with Lenis mapped to GSAP
-    const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-      smoothWheel: true,
-    });
-
-    lenis.on('scroll', ScrollTrigger.update);
-    
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-    
-    requestAnimationFrame(raf);
-
-    // Sync GSAP to Lenis
-    gsap.ticker.add((time)=>{
-      lenis.raf(time * 1000)
-    })
-    gsap.ticker.lagSmoothing(0)
-
-    // GSAP Scroll Animations
-    const sections = document.querySelectorAll('.section .glass-card');
-    sections.forEach((sec) => {
-      gsap.fromTo(sec, 
-        { opacity: 0, y: 100, scale: 0.9 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sec,
-            start: "top 80%",
-            end: "top 50%",
-            scrub: 1
-          }
-        }
-      );
-    });
-
-  }, []);
-
-  useEffect(() => {
-     let interval: any;
-     if (activeTimer === '5s') {
-        interval = setInterval(() => {
-            setTimer5(prev => {
-                if (prev <= 1) { clearInterval(interval); triggerConfetti(); setActiveTimer(null); return 0; }
-                return prev - 1;
-            });
-        }, 1000);
-     } else if (activeTimer === '20s') {
-        interval = setInterval(() => {
-            setTimer20(prev => {
-                if (prev <= 1) { clearInterval(interval); triggerConfetti(); setActiveTimer(null); return 0; }
-                return prev - 1;
-            });
-        }, 1000);
-     } else if (activeTimer === '120s') {
-        interval = setInterval(() => {
-            setTimer120(prev => {
-                if (prev <= 1) { clearInterval(interval); triggerConfetti(); setActiveTimer(null); return 0; }
-                return prev - 1;
-            });
-        }, 1000);
-     }
-
-     return () => clearInterval(interval);
-  }, [activeTimer]);
-
   const triggerConfetti = () => {
       setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 5000); // 5 seconds of confetti celebration
+      setTimeout(() => setShowConfetti(false), 5000); 
   };
+    const playTone = (freq: number, type: OscillatorType, duration: number, vol = 0.1) => { const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext; if (!AudioContextClass) return; const ctx = new AudioContextClass(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.type = type; osc.frequency.setValueAtTime(freq, ctx.currentTime); gain.gain.setValueAtTime(vol, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration); osc.connect(gain); gain.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + duration); }; const playTick = () => playTone(800, 'sine', 0.05, 0.03); const playStart = () => { playTone(600, 'triangle', 0.4, 0.1); setTimeout(() => playTone(800, 'triangle', 0.4, 0.1), 100); }; const playEnd = () => { playTone(500, 'square', 0.3, 0.1); setTimeout(() => playTone(700, 'square', 0.5, 0.15), 300); };
 
   const formatTime = (seconds: number) => {
       const mins = Math.floor(seconds / 60);
@@ -198,287 +77,342 @@ export default function App() {
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
+  const slides = [
+    // SLIDE 0
+    (
+      <SlideCard>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '3rem', width: '100%', textAlign: 'left' }}>
+           <div style={{ flex: 1 }}>
+              <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} style={{ display: 'inline-block', marginBottom: '1rem' }}>
+                <Smile size={80} color="#FFB300" />
+              </motion.div>
+              <h2 className="subtitle">SkilliZee Student Orientation</h2>
+              <WordReveal text="Same Students. Different Summer." className="title-main gradient-text-skillizee" style={{ fontSize: '4.5rem', lineHeight: 1.1 }} />
+           </div>
+           <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+               <DigitalBuilder />
+           </div>
+        </div>
+      </SlideCard>
+    ),
+    // SLIDE 1
+    (
+      <SlideCard>
+        <img src="/Illustration 1.png" alt="Illustration 1" style={{ maxWidth: '650px', width: '100%', height: 'auto', objectFit: 'contain', margin: '0 auto 1.5rem auto', display: 'block' }} />
+        <LettersPullUp text="New Session • New Class" className="title-main gradient-text-skillizee" style={{ fontSize: '3.5rem', lineHeight: '1.2', justifyContent: 'center' }} />
+        <LettersPullUp text="New Notebooks" className="title-main" style={{ fontSize: '3.5rem', lineHeight: '1.2', justifyContent: 'center' }} />
+      </SlideCard>
+    ),
+    // SLIDE 2
+    (
+      <SlideCard>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+          <Typewriter text="Will YOU be a better version of yourself this year?" className="title-main" />
+          <span style={{color: '#0B66E4', animation: 'blink 1s step-end infinite', fontSize: '4.5rem', fontWeight: 800}}>|</span>
+        </div>
+      </SlideCard>
+    ),
+    // SLIDE 3
+    (
+      <SlideCard>
+        <motion.div style={{ display: 'inline-block', marginBottom: '1rem' }} animate={{ rotate: [0, 5, -5, 0] }} transition={{ repeat: Infinity, duration: 3 }}>
+          <Zap size={60} color="#FFB300" />
+        </motion.div>
+        <h2 className="subtitle">Reality Check</h2>
+        <div className="split-screen" style={{ marginTop: '2rem' }}>
+           <div className="split-side bright">
+               <ScalePopText text="New Goals" className="title-main" />
+           </div>
+           <div className="split-side dim">
+               <GlitchText text="Same Habits" className="title-main" style={{color: 'rgba(255,255,255,0.4)', display: 'block'}} />
+           </div>
+        </div>
+      </SlideCard>
+    ),
+    // SLIDE 4
+    (
+      <SlideCard>
+        <WordReveal text="What will make THIS year different?" className="title-main gradient-text-skillizee" style={{marginBottom: '2rem', justifyContent: 'center'}} />  
+        <img src="/Gif 2.gif" alt="Different" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto' }} />
+      </SlideCard>
+    ),
+    // SLIDE 5
+    (
+       <SlideCard>
+         <div style={{color: '#FFB300', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+               <Zap size={32} /> <LettersPullUp text="Activity 1" className="subtitle" style={{margin: 0}} />
+           </div>
+           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginTop: '1rem'}}>
+               <Smile size={48} /> <LettersPullUp text="Show your REAL summer routine" className="title-main" style={{ fontSize: '3.5rem', margin: 0}} /> 
+         </div>
+         <div className="timer" style={{margin: '2rem 0'}}>{timer5}</div>
+         <button className="skillizee-primary-btn" onClick={() => { playStart(); setTimer5(5); setActiveTimer('5s'); }}>
+           Start Countdown
+         </button>
+       </SlideCard>
+    ),
+    // SLIDE 6
+    (
+      <SlideCard>        <img src="/Comfortable_Slide_7.gif" alt="Comfortable" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto 2rem auto' }} />        <h1 className="title-main">Comfortable…</h1>
+        <h2 className="subtitle" style={{color: '#FF3366', fontSize: '2.5rem', marginTop: '1rem'}}>But nothing changes.</h2>
+      </SlideCard>
+    ),
+    // SLIDE 7
+    (
+      <SlideCard>
+         <h2 className="subtitle" style={{color: '#FFB300', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Zap size={32} /> Think Fast (Activity 2)</h2>
+         <h1 className="title-main" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}><Brain size={48} /> How would you make your school more fun?</h1>
+         <div className="timer" style={{margin: '2rem 0'}}>{timer20}</div>
+         <button className="skillizee-primary-btn" onClick={() => { playStart(); setTimer20(20); setActiveTimer('20s'); }}>
+           Start Countdown
+         </button>
+      </SlideCard>
+    ),
+    // SLIDE 8
+    (
+      <SlideCard>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '3rem', width: '100%', textAlign: 'left' }}>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <CreativeIdea />
+          </div>
+          <div style={{ flex: 1 }}>
+            <LetterBounce text="You have ideas." className="title-main gradient-text-skillizee" style={{ fontSize: '4.5rem', lineHeight: 1.1, flexWrap: 'wrap' }} /> 
+            <h2 className="subtitle" style={{ marginTop: '1rem' }}>You just don’t use them enough.</h2>
+          </div>
+        </div>
+      </SlideCard>
+    ),
+    // SLIDE 9
+    (
+      <SlideCard>
+         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '2rem'}}>
+               <Brain size={32} /> <LettersPullUp text="Meta Skills" className="subtitle" style={{ fontSize: '3.5rem', margin: 0}} />
+         </div>
+         <div className="grid-cards">
+            <div className="info-card"><Brain size={40} style={{marginBottom: '1rem', color: '#FFB300'}}/><h3>Thinking</h3></div>
+            <div className="info-card"><MessageCircle size={40} style={{marginBottom: '1rem', color: '#FFB300'}}/><h3>Communication</h3></div>
+            <div className="info-card"><Target size={40} style={{marginBottom: '1rem', color: '#FFB300'}}/><h3>Problem-Solving</h3></div>
+         </div>
+      </SlideCard>
+    ),
+    // SLIDE 10
+    (
+      <SlideCard>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '3rem', width: '100%', textAlign: 'left' }}>
+           <div style={{ flex: 1 }}>
+              <h1 className="title-main" style={{ fontSize: '4.5rem', lineHeight: 1.1 }}>These are</h1>
+              <WordReveal text="Meta Skills" className="title-main gradient-text-skillizee" style={{ fontSize: '4.5rem', lineHeight: 1.1 }} />
+              <h2 className="subtitle" style={{marginTop: '2rem'}}>They make you stand out.</h2>
+           </div>
+           <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+              <GrowthAnalytics />
+           </div>
+        </div>
+      </SlideCard>
+    ),
+    // SLIDE 11
+    (
+       <SlideCard>
+         <div style={{color: '#FFB300', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '1rem'}}>
+               <Zap size={32}/> <LettersPullUp text="Main Wow! (Activity 3)" className="subtitle" style={{ fontSize: '3rem', margin: 0}} />
+           </div>
+           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}>
+               <Rocket size={48}/> <LettersPullUp text="Real-World Challenge" className="title-main" style={{ fontSize: '4.5rem', margin: 0}} />
+         </div>
+         <p style={{fontSize: '2rem', marginBottom: '1rem'}}>A brand wants students to choose them.<br/>Your idea?</p>
+         <p style={{fontSize: '1.2rem', color: 'rgba(255,255,255,0.5)', marginBottom: '1rem'}}>(Groups of 3)</p>
+         <div className="timer" style={{margin: '1rem 0'}}>{formatTime(timer120)}</div>
+         <button className="skillizee-primary-btn" onClick={() => { playStart(); setTimer120(120); setActiveTimer('120s'); }}>
+           Start 2 Min Timer
+         </button>
+       </SlideCard>
+    ),
+    // SLIDE 12
+    (
+       <SlideCard>
+         <h1 className="title-main gradient-text-skillizee" style={{marginBottom: '2rem'}}>This is real-world thinking.</h1>
+         <img src="/Gif 4.gif" alt="Real world" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto' }} />
+       </SlideCard>
+    ),
+    // SLIDE 13
+    (
+      <SlideCard>
+        <h2 className="subtitle">This summer…</h2>
+        <img src="/Slide_13.gif" alt="This summer" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '1rem auto 2rem auto' }} />
+        <div className="grid-cards">
+           <div className="info-card" style={{borderTop: '4px solid #0B66E4'}}><h3>Speak confidently</h3></div>
+           <div className="info-card" style={{borderTop: '4px solid #FFB300'}}><h3>Think differently</h3></div>
+           <div className="info-card" style={{borderTop: '4px solid #00C853'}}><h3>Share ideas fearlessly</h3></div>
+        </div>
+      </SlideCard>
+    ),
+    // SLIDE 14
+    (
+      <SlideCard>
+         <h2 className="subtitle" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Zap size={32}/> Future You</h2>
+         <WordReveal text="What did you do this summer?" className="title-main" style={{justifyContent: 'center'}} />
+         <div className="split-screen">
+            <div className="split-side dim">
+               <GlitchText text="“Nothing much…”" style={{fontSize: '3rem', color: 'rgba(255,255,255,0.4)', margin: 0, fontWeight: 800}} />
+            </div>
+            <div className="split-side bright">
+               <ScalePopText text="“I built something.”" className="gradient-text-skillizee" style={{fontSize: '3rem', margin: 0, fontWeight: 800}} />
+            </div>
+         </div>
+      </SlideCard>
+    ),
+    // SLIDE 15
+    (
+      <SlideCard>
+         <h2 className="subtitle" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Rocket size={32}/> The Experience</h2>
+         <div className="grid-cards">
+           <div className="info-card"><Target size={40} style={{marginBottom: '1rem', color: '#0cebeb'}}/><h3>Work on real challenges</h3></div>
+           <div className="info-card"><Lightbulb size={40} style={{marginBottom: '1rem', color: '#0cebeb'}}/><h3>Build ideas</h3></div>
+           <div className="info-card"><Presentation size={40} style={{marginBottom: '1rem', color: '#0cebeb'}}/><h3>Present confidently</h3></div>
+         </div>
+      </SlideCard>
+    ),
+    // SLIDE 16
+    (
+      <SlideCard>
+         <img src="/Slide_17.gif" alt="Experience" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto 2rem auto' }} />
+         <h2 className="subtitle">This is your</h2>
+         <h1 className="title-main gradient-text-skillizee" style={{fontSize: 'clamp(4rem, 8vw, 6rem)', marginTop: '1rem'}}>SkilliZee Experience</h1>
+      </SlideCard>
+    ),
+    // SLIDE 17
+    (
+      <SlideCard>
+         <h1 className="title-main">Today was just a glimpse.</h1>
+         <h2 className="subtitle" style={{color: '#fff', margin: '2rem 0'}}>We’re coming back. Next time…</h2>
+         <h1 className="title-main gradient-text-skillizee pulse-text" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>You step into your<br/>SkilliZee Experience</h1>
 
-  return (
-    <div ref={containerRef} className="app-container">
-      {showConfetti && <Confetti width={width} height={height} recycle={false} numberOfPieces={300} style={{ position: 'fixed', zIndex: 9999 }} />}
-      {/* Top Header Animated */}
+         <div style={{marginTop: '4rem'}}>
+           <motion.div
+             onClick={triggerConfetti}
+             style={{display: 'inline-block', cursor: 'pointer'}}
+             whileHover={{ scale: 1.2, rotate: [0, -10, 10, -10, 10, 0] }}
+             transition={{ duration: 0.5 }}
+           >
+             <Trophy size={80} color="#FFB300" />
+           </motion.div>
+           <p style={{ marginTop: '1rem', fontSize: '1rem', color: 'rgba(255,255,255,0.4)', fontWeight: 'bold', letterSpacing: '2px' }}>CLICK TO CELEBRATE</p>
+         </div>
+      </SlideCard>
+    )
+  ];
+
+  const handlePrev = () => {
+    setCurrentSlide(prev => (prev > 0 ? prev - 1 : prev));
+  };
+
+  const handleNext = () => {
+    setCurrentSlide(prev => (prev < slides.length - 1 ? prev + 1 : prev));
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        handleNext();
+      } else if (e.key === 'ArrowLeft') {
+        handlePrev();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [slides.length]);
+
+  useEffect(() => {
+     let interval: any;
+     if (activeTimer === '5s') {
+        interval = setInterval(() => {
+            setTimer5(prev => {
+                  if (prev <= 1) { clearInterval(interval); triggerConfetti(); playEnd(); setActiveTimer(null); return 0; }
+                  playTick();
+                  return prev - 1;
+              });
+          }, 1000);
+       } else if (activeTimer === '20s') {
+          interval = setInterval(() => {
+              setTimer20(prev => {
+                  if (prev <= 1) { clearInterval(interval); triggerConfetti(); playEnd(); setActiveTimer(null); return 0; }
+                  playTick();
+                  return prev - 1;
+              });
+          }, 1000);
+       } else if (activeTimer === '120s') {
+          interval = setInterval(() => {
+              setTimer120(prev => {
+                  if (prev <= 1) { clearInterval(interval); triggerConfetti(); playEnd(); setActiveTimer(null); return 0; }
+                  playTick();
+                    return prev - 1;
+                });
+            }, 1000);
+         }
+      return () => clearInterval(interval);
+    }, [activeTimer]);
+
+    return (
+      <div className="app-container skillizee-theme">
+      {/* Dynamic CSS Background Setup */}
+      <div className="skillizee-bg"></div>
+      <SchoolBackground />
+
+      {showConfetti && <Confetti width={width} height={height} recycle={false} numberOfPieces={400} gravity={0.2} style={{ position: 'fixed', zIndex: 9999 }} />}
+      
+      {/* Top Header Always Present */}
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
           width: '100%',
-          padding: '1rem',
+          padding: '1.5rem 3rem',
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
           alignItems: 'center',
-          background: 'rgba(5, 5, 5, 0.2)',
-          backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          background: 'transparent',
           zIndex: 100,
         }}
       >
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1.5rem' }}>
-          <img src="/Sanskar-Footer-logo.png" alt="Sanskar School" style={{ height: '50px', objectFit: 'contain' }} />
-          <div style={{ width: '1px', height: '35px', background: 'rgba(255,255,255,0.3)' }}></div>
-          <img src="/skillizee-white-logo.png" alt="Skillizee" style={{ height: '40px', objectFit: 'contain' }} />
-        </div>
+        <img src="/Sanskar-Footer-logo.png" alt="Sanskar School" style={{ height: '55px', objectFit: 'contain' }} />
+        <img src="/skillizee-blue-logo.png" alt="Skillizee" style={{ height: '45px', objectFit: 'contain' }} />
       </motion.header>
 
-      <div className="canvas-container" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1 }}>
-           <Antigravity
-              count={400}
-              magnetRadius={10}
-              ringRadius={10}
-              waveSpeed={0.4}
-              waveAmplitude={1}
-              particleSize={2.5}
-              lerpSpeed={0.06}
-              color="#ffffff"
-              autoAnimate={false}
-              particleVariance={1}
-              rotationSpeed={0}
-              depthFactor={1}
-              pulseSpeed={3}
-              particleShape="capsule"
-              fieldStrength={10}
-           />
+      {/* Floating Navigation Controls */}
+      <div className="nav-controls">
+         <button onClick={handlePrev} disabled={currentSlide === 0} className={`nav-btn ${currentSlide === 0 ? 'disabled' : ''}`}>
+           <ChevronLeft size={32} strokeWidth={2.5}/>
+         </button>
+         <div className="slide-indicator">
+           {currentSlide + 1} / {slides.length}
+         </div>
+         <button onClick={handleNext} disabled={currentSlide === slides.length - 1} className={`nav-btn ${currentSlide === slides.length - 1 ? 'disabled' : ''}`}>
+           <ChevronRight size={32} strokeWidth={2.5}/>
+         </button>
       </div>
 
-      {/* SLIDE 1 */}
-      <Section id="slide-1">
-        <InteractiveCard>
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            style={{ display: 'inline-block', marginBottom: '1rem' }}
-          >
-            <Smile size={80} color="#facc15" />
-          </motion.div>
-          <h2 className="subtitle">SkilliZee Student Orientation</h2>
-          <h1 className="title-main gradient-text">Same Students.<br/>Different Summer.</h1>
-          <div style={{ marginTop: '2rem', fontSize: '1.2rem', opacity: 0.7, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-            Scroll to discover <ArrowRight size={20} style={{ transform: 'rotate(90deg)' }}/>
-          </div>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 2 */}
-      <Section id="slide-2">
-        <InteractiveCard>
-          <h1 className="title-main">
-            New Session<br/>
-            <span className="gradient-text">New Class</span><br/>
-            New Notebooks
-          </h1>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 3 */}
-      <Section id="slide-3">
-        <InteractiveCard>
-          <h1 className="title-main">
-            Will <span className="gradient-text">YOU</span> be a better version of yourself this year?
-            <span style={{color: '#7b2cbf', animation: 'blink 1s step-end infinite'}}>|</span>
-          </h1>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 4 */}
-      <Section id="slide-4">
-        <InteractiveCard>
-          <motion.div style={{ display: 'inline-block', marginBottom: '1rem' }} animate={{ rotate: [0, 5, -5, 0] }} transition={{ repeat: Infinity, duration: 3 }}>
-            <Zap size={60} color="#facc15" />
-          </motion.div>
-          <h2 className="subtitle">Reality Check</h2>
-          <div className="split-screen">
-             <div className="split-side bright interactive-hover">
-                 <h1 className="title-main">New Goals</h1>
-             </div>
-             <div className="split-side dim interactive-hover">
-                 <h1 className="title-main">Same Habits</h1>
-             </div>
-          </div>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 5 */}
-      <Section id="slide-5">
-        <InteractiveCard>
-          <h1 className="title-main gradient-text">What will make THIS year different?</h1>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 6 */}
-      <Section id="slide-6">
-         <InteractiveCard>
-           <h2 className="subtitle" style={{color: '#ffb703', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Zap size={32} /> Activity 1</h2>
-           <h1 className="title-main" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}><Smile size={48} /> Show your REAL summer routine</h1>
-           <div className="timer interactive-pulse">{timer5}</div>
-           <br/>
-           <button 
-             className="skillizee-btn" 
-             style={{padding: '1rem 2rem', background: '#7b2cbf', border: 'none', color: '#fff', borderRadius: '20px', cursor: 'pointer', fontSize: '1.5rem', transition: 'all 0.3s'}}
-             onClick={() => { setTimer5(5); setActiveTimer('5s'); }}
-           >
-             Start Countdown
-           </button>
-         </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 7 */}
-      <Section id="slide-7">
-        <InteractiveCard>
-          <h1 className="title-main">Comfortable…</h1>
-          <h2 className="subtitle bounce-in" style={{color: '#ff0054'}}>But nothing changes.</h2>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 8 */}
-      <Section id="slide-8">
-        <InteractiveCard>
-           <h2 className="subtitle" style={{color: '#ffb703', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Zap size={32} /> Think Fast (Activity 2)</h2>
-           <h1 className="title-main" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}><Brain size={48} /> How would you make your school more fun?</h1>
-           <div className="timer interactive-pulse">{timer20}</div>
-           <br/>
-           <button 
-             className="skillizee-btn" 
-             style={{padding: '1rem 2rem', background: '#7b2cbf', border: 'none', color: '#fff', borderRadius: '20px', cursor: 'pointer', fontSize: '1.5rem', transition: 'transform 0.2s', boxShadow: '0px 10px 20px rgba(123, 44, 191, 0.4)'}}
-             onClick={() => { setTimer20(20); setActiveTimer('20s'); }}
-           >
-             Start Countdown
-           </button>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 9 */}
-      <Section id="slide-9">
-        <InteractiveCard>
-          <h1 className="title-main gradient-text">You have ideas.</h1>
-          <h2 className="subtitle">You just don’t use them enough.</h2>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 10 */}
-      <Section id="slide-10">
-        <InteractiveCard>
-           <h2 className="subtitle" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Brain size={32} /> Meta Skills</h2>
-           <div className="grid-cards">
-              <div className="info-card interactive-float"><Brain size={40} style={{marginBottom: '1rem'}}/><h3>Thinking</h3></div>
-              <div className="info-card interactive-float" style={{animationDelay: '0.2s'}}><MessageCircle size={40} style={{marginBottom: '1rem'}}/><h3>Communication</h3></div>
-              <div className="info-card interactive-float" style={{animationDelay: '0.4s'}}><Target size={40} style={{marginBottom: '1rem'}}/><h3>Problem-Solving</h3></div>
-           </div>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 11 */}
-      <Section id="slide-11">
-        <InteractiveCard>
-          <h1 className="title-main">These are <br/><span className="gradient-text">Meta Skills</span></h1>
-          <h2 className="subtitle">They make you stand out.</h2>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 12 */}
-      <Section id="slide-12">
-         <InteractiveCard>
-           <h2 className="subtitle" style={{color: '#ffb703', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Zap size={32}/> Main Wow! (Activity 3)</h2>
-           <h1 className="title-main" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}><Rocket size={48}/> Real-World Challenge</h1>
-           <p style={{fontSize: '2rem', marginBottom: '2rem'}}>A brand wants students to choose them.<br/>Your idea?</p>
-           <p style={{fontSize: '1.5rem', color: '#fff', opacity: 0.6}}>(Groups of 3)</p>
-           <div className="timer interactive-pulse">{formatTime(timer120)}</div>
-           <br/>
-           <button 
-             className="skillizee-btn glow-btn" 
-             style={{padding: '1rem 2rem', background: '#7b2cbf', border: 'none', color: '#fff', borderRadius: '20px', cursor: 'pointer', fontSize: '1.5rem'}}
-             onClick={() => { setTimer120(120); setActiveTimer('120s'); }}
-           >
-             Start 2 Min Timer
-           </button>
-         </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 13 */}
-      <Section id="slide-13">
-         <InteractiveCard>
-           <h1 className="title-main gradient-text">This is real-world thinking.</h1>
-         </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 14 */}
-      <Section id="slide-14">
-        <InteractiveCard>
-          <h2 className="subtitle">This summer…</h2>
-          <div className="grid-cards">
-             <div className="info-card interactive-float" style={{borderColor: '#ff006e'}}><h3>Speak confidently</h3></div>
-             <div className="info-card interactive-float" style={{borderColor: '#8338ec', animationDelay: '0.2s'}}><h3>Think differently</h3></div>
-             <div className="info-card interactive-float" style={{borderColor: '#3a86ff', animationDelay: '0.4s'}}><h3>Share ideas fearlessly</h3></div>
-          </div>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 15 */}
-      <Section id="slide-15">
-        <InteractiveCard>
-           <h2 className="subtitle" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Zap size={32}/> Future You</h2>
-           <h1 className="title-main">"What did you do this summer?"</h1>
-           <div className="split-screen">
-              <div className="split-side dim interactive-hover">
-                 <h1 style={{fontSize: '3rem'}}>“Nothing much…”</h1>
-              </div>
-              <div className="split-side bright interactive-hover">
-                 <h1 className="gradient-text" style={{fontSize: '3rem'}}>“I built something.”</h1>
-              </div>
-           </div>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 16 */}
-      <Section id="slide-16">
-        <InteractiveCard>
-           <h2 className="subtitle" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><Rocket size={32}/> The Experience</h2>
-           <div className="grid-cards">
-             <div className="info-card interactive-float"><Target size={40} style={{marginBottom: '1rem'}}/><h3>Work on real challenges</h3></div>
-             <div className="info-card interactive-float" style={{animationDelay: '0.2s'}}><Lightbulb size={40} style={{marginBottom: '1rem'}}/><h3>Build ideas</h3></div>
-             <div className="info-card interactive-float" style={{animationDelay: '0.4s'}}><Presentation size={40} style={{marginBottom: '1rem'}}/><h3>Present confidently</h3></div>
-           </div>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 17 */}
-      <Section id="slide-17">
-        <InteractiveCard>
-           <h2 className="subtitle">This is your</h2>
-           <h1 className="title-main gradient-text float-text" style={{fontSize: '5rem'}}>SkilliZee Experience</h1>
-        </InteractiveCard>
-      </Section>
-
-      {/* SLIDE 18 */}
-      <Section id="slide-18">
-        <InteractiveCard>
-           <h1 className="title-main">Today was just a glimpse.</h1>
-           <h2 className="subtitle" style={{color: '#fff', margin: '2rem 0'}}>We’re coming back. Next time…</h2>
-           <h1 className="title-main gradient-text pulse-text" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>You step into your<br/>SkilliZee Experience</h1>
-           
-           <div style={{marginTop: '4rem'}}>
-             <motion.span 
-               onClick={triggerConfetti}
-               style={{display: 'inline-block', cursor: 'pointer'}} 
-               className="interactive-wave"
-               whileHover={{ scale: 1.2, rotate: [0, -10, 10, -10, 10, 0] }}
-               transition={{ duration: 0.5 }}
-             >
-               <Trophy size={80} color="#facc15" />
-             </motion.span>
-             <p style={{ marginTop: '1rem', fontSize: '1rem', color: '#aaaaaa' }}>Click me!</p>
-           </div>
-        </InteractiveCard>
-      </Section>
+      {/* Main Slider Viewport */}
+      <div className="slider-viewport">
+        <motion.div 
+          className="slider-track"
+          animate={{ x: `-${currentSlide * 100}vw` }}
+          transition={{ type: "spring", stiffness: 60, damping: 16, mass: 1 }}
+        >
+          {slides.map((slide, index) => (
+            <div key={index} className="slide-panel">
+              {slide}
+            </div>
+          ))}
+        </motion.div>
+      </div>
 
     </div>
   );
 }
+
+
+
