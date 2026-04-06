@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Brain, Smile, Zap, Target, Rocket, MessageCircle, Lightbulb, Presentation, Trophy, ChevronLeft, ChevronRight } from 'lucide-react';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
-import { DigitalBuilder, GrowthAnalytics, CreativeIdea, AbstractShapes } from './Illustrations';
+import { GrowthAnalytics, CreativeIdea, AbstractShapes } from './Illustrations';
 import { SchoolBackground } from './SchoolBackground';
 import { WordReveal, LetterBounce, Typewriter, GlitchText, ScalePopText, LettersPullUp } from './AnimatedTexts';
 
