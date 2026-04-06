@@ -139,7 +139,7 @@ export default function App() {
     // SLIDE 5
     (
        <SlideCard>
-         
+           <img src="/slide_5.gif" alt="Show your REAL summer routine" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto' }} />
            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginTop: '1rem'}}>
                <Smile size={48} /> <LettersPullUp text="Show your REAL summer routine" className="title-main" style={{ fontSize: '3.5rem', margin: 0}} /> 
          </div>
