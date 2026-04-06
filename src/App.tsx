@@ -89,7 +89,7 @@ export default function App() {
     (
       <SlideCard>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', textAlign: 'center' }}>
-          <img src="/slide_1.gif" alt="slide 1" style={{ maxHeight: '250px', width: '100%', objectFit: 'contain', margin: '0 auto 1.5rem auto', display: 'block' }} />
+          <img src="/slide 1.gif" alt="slide 1" style={{ maxHeight: '250px', width: '100%', objectFit: 'contain', margin: '0 auto 1.5rem auto', display: 'block' }} />
           <h2 className="subtitle">SkilliZee Student Orientation</h2>
           <WordReveal text="Same Students. Different Summer." className="title-main gradient-text-skillizee" style={{ fontSize: '4.5rem', lineHeight: 1.1 }} />
         </div>
