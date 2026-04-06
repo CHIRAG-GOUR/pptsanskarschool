@@ -88,17 +88,10 @@ export default function App() {
     // SLIDE 0
     (
       <SlideCard>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '3rem', width: '100%', textAlign: 'left' }}>
-           <div style={{ flex: 1 }}>
-              <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} style={{ display: 'inline-block', marginBottom: '1rem' }}>
-                <Smile size={80} color="#FFB300" />
-              </motion.div>
-              <h2 className="subtitle">SkilliZee Student Orientation</h2>
-              <WordReveal text="Same Students. Different Summer." className="title-main gradient-text-skillizee" style={{ fontSize: '4.5rem', lineHeight: 1.1 }} />
-           </div>
-           <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-               <DigitalBuilder />
-           </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', textAlign: 'center' }}>
+          <img src="/slide_1.gif" alt="slide 1" style={{ maxHeight: '250px', width: '100%', objectFit: 'contain', margin: '0 auto 1.5rem auto', display: 'block' }} />
+          <h2 className="subtitle">SkilliZee Student Orientation</h2>
+          <WordReveal text="Same Students. Different Summer." className="title-main gradient-text-skillizee" style={{ fontSize: '4.5rem', lineHeight: 1.1 }} />
         </div>
       </SlideCard>
     ),
