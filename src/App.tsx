@@ -239,12 +239,12 @@ export default function App() {
        </SlideCard>
     ),
     // SLIDE 12
-    (
-       <SlideCard>
-         <h1 className="title-main gradient-text-skillizee" style={{marginBottom: '2rem'}}>This is real-world thinking.</h1>
-         <img src="/Slide_13.gif" alt="Real world" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto' }} />
-       </SlideCard>
-    ),
+      (
+         <SlideCard>
+           <h1 className="title-main gradient-text-skillizee" style={{marginBottom: '2rem'}}>This is real-world thinking.</h1>
+           <img src="/Slide_13.gif" alt="Real world" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto' }} />
+         </SlideCard>
+      ),
     // SLIDE 13
     (
       <SlideCard>
