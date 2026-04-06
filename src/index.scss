@@ -18,7 +18,7 @@ body, html, #root {
   width: 100vw;
   height: 100vh;
   font-family: 'Inter', sans-serif;
-  background-color: var(--skillizee-dark);
+  /* background-color: var(--skillizee-dark); */
   color: var(--text-primary);
   overflow: hidden; /* Lock the scroll completely */
 }
@@ -172,7 +172,7 @@ h2.subtitle {
 }
 
 .info-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1.5rem;
   padding: 2.5rem 1.5rem;
@@ -187,7 +187,7 @@ h2.subtitle {
 
 .info-card:hover {
   transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .info-card h3 {
@@ -215,8 +215,8 @@ h2.subtitle {
 }
 
 .split-side.dim {
-  background: rgba(255, 255, 255, 0.02);
-  color: rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.5);
   border: 2px dashed rgba(255,255,255,0.1);
 }
 
