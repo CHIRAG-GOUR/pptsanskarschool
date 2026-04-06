@@ -12,10 +12,10 @@ function SlideCard({ children, className = '' }: { children: React.ReactNode, cl
       className={`slide-card-wrapper`}
       style={{ width: '100%', maxWidth: '1000px', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 auto' }}
     >
-      <div 
+      <div
         className={`glass-card ${className}`}
-        style={{ 
-          width: '100%', 
+        style={{
+          width: '100%',
           padding: '5rem 4rem',
           borderRadius: '3rem',
           background: 'rgba(255, 255, 255, 0.03)',
@@ -96,10 +96,9 @@ export default function App() {
     // SLIDE 1
     (
       <SlideCard>
-        <img src="/Illustration 1.png" alt="Illustration 1" style={{ maxWidth: '350px', width: '100%', objectFit: 'contain', margin: '0 auto 2rem auto', display: 'block' }} />
-        <h1 className="title-main">
-          New Session<br/>
-          <span className="gradient-text-skillizee">New Class</span><br/>
+        <img src="/Illustration 1.png" alt="Illustration 1" style={{ maxWidth: '650px', width: '100%', height: 'auto', objectFit: 'contain', margin: '0 auto 1.5rem auto', display: 'block' }} />
+        <h1 className="title-main" style={{ fontSize: '3.5rem', lineHeight: '1.2' }}>
+          New Session • <span className="gradient-text-skillizee">New Class</span><br/>
           New Notebooks
         </h1>
       </SlideCard>
