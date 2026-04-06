@@ -1,16 +1,15 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
 // Floating animation configuration
-const floatAnimation = {
+const floatAnimation: any = {
   animate: { y: [0, -15, 0], rotate: [0, 2, -2, 0] },
   transition: { repeat: Infinity, duration: 6, ease: "easeInOut" }
 };
-const floatAnimationReverse = {
+const floatAnimationReverse: any = {
   animate: { y: [0, 15, 0], rotate: [0, -2, 2, 0] },
   transition: { repeat: Infinity, duration: 5, ease: "easeInOut" }
 };
-const pulseAnimation = {
+const pulseAnimation: any = {
   animate: { scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] },
   transition: { repeat: Infinity, duration: 4, ease: "easeInOut" }
 };
