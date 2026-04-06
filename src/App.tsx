@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Brain, Smile, Zap, Target, Rocket, MessageCircle, Lightbulb, Presentation, Trophy, ChevronLeft, ChevronRight } from 'lucide-react';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
-import { DigitalBuilder, GrowthAnalytics, CreativeIdea } from './Illustrations';
+import { DigitalBuilder, GrowthAnalytics, CreativeIdea, AbstractShapes } from './Illustrations';
 import { SchoolBackground } from './SchoolBackground';
 import { WordReveal, LetterBounce, Typewriter, GlitchText, ScalePopText, LettersPullUp } from './AnimatedTexts';
 
@@ -182,9 +182,12 @@ export default function App() {
     // SLIDE 9
     (
       <SlideCard>
-         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '2rem'}}>
+         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '1rem'}}>
                <Brain size={32} /> <LettersPullUp text="Meta Skills" className="subtitle" style={{ fontSize: '3.5rem', margin: 0}} />
          </div>
+         <motion.div animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+             <AbstractShapes />
+         </motion.div>
          <div className="grid-cards">
             <div className="info-card"><Brain size={40} style={{marginBottom: '1rem', color: '#FFB300'}}/><h3>Thinking</h3></div>
             <div className="info-card"><MessageCircle size={40} style={{marginBottom: '1rem', color: '#FFB300'}}/><h3>Communication</h3></div>
@@ -210,6 +213,12 @@ export default function App() {
     // SLIDE 11
     (
        <SlideCard>
+         <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }} style={{ position: 'absolute', top: '10%', right: '10%', opacity: 0.8, pointerEvents: 'none', transform: 'scale(0.6)' }}>
+            <DigitalBuilder />
+         </motion.div>
+         <motion.div animate={{ x: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '20%', left: '5%', opacity: 0.6, pointerEvents: 'none', transform: 'scale(0.5)' }}>
+            <CreativeIdea />
+         </motion.div>
          
            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}>
                <Rocket size={48}/> <LettersPullUp text="Real-World Challenge" className="title-main" style={{ fontSize: '4.5rem', margin: 0}} />
