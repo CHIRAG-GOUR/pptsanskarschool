@@ -220,15 +220,8 @@ export default function App() {
     // SLIDE 11
     (
        <SlideCard>
-         <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }} style={{ position: 'absolute', top: '10%', right: '10%', opacity: 0.8, pointerEvents: 'none', transform: 'scale(0.6)' }}>
-            <DigitalBuilder />
-         </motion.div>
-         <motion.div animate={{ x: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '20%', left: '5%', opacity: 0.6, pointerEvents: 'none', transform: 'scale(0.5)' }}>
-            <CreativeIdea />
-         </motion.div>
-         
-           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}>
-               <Rocket size={48}/> <LettersPullUp text="Real-World Challenge" className="title-main" style={{ fontSize: '4.5rem', margin: 0}} />
+         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px'}}>
+           <Rocket size={48}/> <LettersPullUp text="Real-World Challenge" className="title-main" style={{ fontSize: '4.5rem', margin: 0}} />
          </div>
          <p style={{fontSize: '2rem', marginBottom: '1rem'}}>A brand wants students to choose them.<br/>Your idea?</p>
          <p style={{fontSize: '1.2rem', color: 'rgba(255,255,255,0.5)', marginBottom: '1rem'}}>(Groups of 3)</p>
