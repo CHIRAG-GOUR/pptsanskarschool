@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { Brain, Smile, Zap, Target, Rocket, MessageCircle, Lightbulb, Presentation, Trophy, ChevronLeft, ChevronRight } from 'lucide-react';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
-import { AbstractShapes, DigitalBuilder, GrowthAnalytics, CreativeIdea } from './Illustrations';
+import { DigitalBuilder, GrowthAnalytics, CreativeIdea } from './Illustrations';
+import { SchoolBackground } from './SchoolBackground';
 
 function SlideCard({ children, className = '' }: { children: React.ReactNode, className?: string }) {
   return (
@@ -339,7 +340,7 @@ export default function App() {
     <div className="app-container skillizee-theme">
       {/* Dynamic CSS Background Setup */}
       <div className="skillizee-bg"></div>
-      <AbstractShapes />
+      <SchoolBackground />
 
       {showConfetti && <Confetti width={width} height={height} recycle={false} numberOfPieces={400} gravity={0.2} style={{ position: 'fixed', zIndex: 9999 }} />}
       
