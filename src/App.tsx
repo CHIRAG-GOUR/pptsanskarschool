@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Brain, Smile, Zap, Target, Rocket, MessageCircle, Lightbulb, Presentation, Trophy, ChevronLeft, ChevronRight } from 'lucide-react';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
+import { AbstractShapes, DigitalBuilder, GrowthAnalytics, CreativeIdea } from './Illustrations';
 
 function SlideCard({ children, className = '' }: { children: React.ReactNode, className?: string }) {
   return (
@@ -77,11 +78,18 @@ export default function App() {
     // SLIDE 0
     (
       <SlideCard>
-        <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} style={{ display: 'inline-block', marginBottom: '1rem' }}>
-          <Smile size={80} color="#FFB300" />
-        </motion.div>
-        <h2 className="subtitle">SkilliZee Student Orientation</h2>
-        <h1 className="title-main gradient-text-skillizee">Same Students.<br/>Different Summer.</h1>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '3rem', width: '100%', textAlign: 'left' }}>
+           <div style={{ flex: 1 }}>
+              <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} style={{ display: 'inline-block', marginBottom: '1rem' }}>
+                <Smile size={80} color="#FFB300" />
+              </motion.div>
+              <h2 className="subtitle">SkilliZee Student Orientation</h2>
+              <h1 className="title-main gradient-text-skillizee" style={{ fontSize: '4.5rem', lineHeight: 1.1 }}>Same Students.<br/>Different Summer.</h1>
+           </div>
+           <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+               <DigitalBuilder />
+           </div>
+        </div>
       </SlideCard>
     ),
     // SLIDE 1
@@ -158,8 +166,15 @@ export default function App() {
     // SLIDE 8
     (
       <SlideCard>
-        <h1 className="title-main gradient-text-skillizee">You have ideas.</h1>
-        <h2 className="subtitle">You just don’t use them enough.</h2>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '3rem', width: '100%', textAlign: 'left' }}>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <CreativeIdea />
+          </div>
+          <div style={{ flex: 1 }}>
+            <h1 className="title-main gradient-text-skillizee" style={{ fontSize: '4.5rem', lineHeight: 1.1 }}>You have ideas.</h1>
+            <h2 className="subtitle" style={{ marginTop: '1rem' }}>You just don’t use them enough.</h2>
+          </div>
+        </div>
       </SlideCard>
     ),
     // SLIDE 9
@@ -176,8 +191,15 @@ export default function App() {
     // SLIDE 10
     (
       <SlideCard>
-        <h1 className="title-main">These are <br/><span className="gradient-text-skillizee">Meta Skills</span></h1>
-        <h2 className="subtitle" style={{marginTop: '2rem'}}>They make you stand out.</h2>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '3rem', width: '100%', textAlign: 'left' }}>
+           <div style={{ flex: 1 }}>
+              <h1 className="title-main" style={{ fontSize: '4.5rem', lineHeight: 1.1 }}>These are <br/><span className="gradient-text-skillizee">Meta Skills</span></h1>
+              <h2 className="subtitle" style={{marginTop: '2rem'}}>They make you stand out.</h2>
+           </div>
+           <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+              <GrowthAnalytics />
+           </div>
+        </div>
       </SlideCard>
     ),
     // SLIDE 11
@@ -317,6 +339,7 @@ export default function App() {
     <div className="app-container skillizee-theme">
       {/* Dynamic CSS Background Setup */}
       <div className="skillizee-bg"></div>
+      <AbstractShapes />
 
       {showConfetti && <Confetti width={width} height={height} recycle={false} numberOfPieces={400} gravity={0.2} style={{ position: 'fixed', zIndex: 9999 }} />}
       
