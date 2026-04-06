@@ -133,7 +133,7 @@ export default function App() {
     (
       <SlideCard>
         <WordReveal text="What will make THIS year different?" className="title-main gradient-text-skillizee" style={{marginBottom: '2rem', justifyContent: 'center'}} />  
-        <img src="/Gif 2.gif" alt="Different" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto' }} />
+        <img src="/slide_2.gif" alt="Different" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto' }} />
       </SlideCard>
     ),
     // SLIDE 5
@@ -153,7 +153,7 @@ export default function App() {
     ),
     // SLIDE 6
     (
-      <SlideCard>        <img src="/Gif 3.gif" alt="Comfortable" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto 2rem auto' }} />        <h1 className="title-main">Comfortable…</h1>
+      <SlideCard>        <img src="/Comfortable_Slide_7.gif" alt="Comfortable" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto 2rem auto' }} />        <h1 className="title-main">Comfortable…</h1>
         <h2 className="subtitle" style={{color: '#FF3366', fontSize: '2.5rem', marginTop: '1rem'}}>But nothing changes.</h2>
       </SlideCard>
     ),
@@ -238,7 +238,7 @@ export default function App() {
     (
       <SlideCard>
         <h2 className="subtitle">This summer…</h2>
-        <img src="/Gif 1.gif" alt="This summer" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '1rem auto 2rem auto' }} />
+        <img src="/Slide_13.gif" alt="This summer" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '1rem auto 2rem auto' }} />
         <div className="grid-cards">
            <div className="info-card" style={{borderTop: '4px solid #0B66E4'}}><h3>Speak confidently</h3></div>
            <div className="info-card" style={{borderTop: '4px solid #FFB300'}}><h3>Think differently</h3></div>
@@ -275,7 +275,7 @@ export default function App() {
     // SLIDE 16
     (
       <SlideCard>
-         <img src="/Gif 5.gif" alt="Experience" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto 2rem auto' }} />
+         <img src="/Slide_17.gif" alt="Experience" style={{ maxHeight: '250px', borderRadius: '1.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', margin: '0 auto 2rem auto' }} />
          <h2 className="subtitle">This is your</h2>
          <h1 className="title-main gradient-text-skillizee" style={{fontSize: 'clamp(4rem, 8vw, 6rem)', marginTop: '1rem'}}>SkilliZee Experience</h1>
       </SlideCard>
