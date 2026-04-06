@@ -96,6 +96,7 @@ export default function App() {
     // SLIDE 1
     (
       <SlideCard>
+        <img src="/Illustration 1.png" alt="Illustration 1" style={{ maxWidth: '350px', width: '100%', objectFit: 'contain', margin: '0 auto 2rem auto', display: 'block' }} />
         <h1 className="title-main">
           New Session<br/>
           <span className="gradient-text-skillizee">New Class</span><br/>
