@@ -1,58 +1,17 @@
 ﻿import React, { useEffect, useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
-import * as THREE from 'three';
 import gsap from 'gsap'; 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Lenis from 'lenis';
-import { Brain, Smile, Zap, Target, ArrowRight, Star, Coffee, Rocket, MessageCircle, Lightbulb, Presentation, Trophy } from 'lucide-react';
+import { Brain, Smile, Zap, Target, ArrowRight, Rocket, MessageCircle, Lightbulb, Presentation, Trophy } from 'lucide-react';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
 
 import Antigravity from './Antigravity';
+// @ts-ignore
 import BorderGlow from './BorderGlow';
 
 gsap.registerPlugin(ScrollTrigger);
-
-// 3D Background Component
-function Stars(props: any) {
-  const ref = useRef<any>();
-  const [sphere] = useState(() => {
-    // Generate random points in a sphere
-    const positions = new Float32Array(5000 * 3);
-    for (let i = 0; i < 5000; i++) {
-        const theta = Math.random() * 2 * Math.PI;
-        const phi = Math.acos((Math.random() * 2) - 1);
-        const r = Math.random() * 1.5;
-        positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-        positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-        positions[i * 3 + 2] = r * Math.cos(phi);
-    }
-    return positions;
-  });
-
-  useFrame((state, delta) => {
-    if (ref.current) {
-        ref.current.rotation.x -= delta / 10;
-        ref.current.rotation.y -= delta / 15;
-    }
-  });
-
-  return (
-    <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
-        <PointMaterial
-          transparent
-          color="#e0aaff"
-          size={0.005}
-          sizeAttenuation={true}
-          depthWrite={false}
-        />
-      </Points>
-    </group>
-  );
-}
 
 // Interactive Card Wrapper Component
 function InteractiveCard({ children, className = '' }: { children: React.ReactNode, className?: string }) {
@@ -239,15 +198,6 @@ export default function App() {
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.2 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-  };
 
   return (
     <div ref={containerRef} className="app-container">

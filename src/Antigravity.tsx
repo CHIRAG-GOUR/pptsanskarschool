@@ -21,7 +21,7 @@ const AntigravityInner = ({
   fieldStrength = 10
 }: any) => {
   const meshRef = useRef<THREE.InstancedMesh>(null);
-  const { viewport } = useThree();
+  useThree();
   const dummy = useMemo(() => new THREE.Object3D(), []);
 
   // Global mouse tracker to bypass background z-index event blocking
