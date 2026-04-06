@@ -70,14 +70,18 @@ export default function App() {
       setTimeout(() => setShowConfetti(false), 5000); 
   };
 
-    useEffect(() => {
-      if (currentSlide === slides.length - 1) {
-        triggerConfetti();
-      }
-    }, [currentSlide]);
+  const playTone = (freq: number, type: OscillatorType, duration: number, vol = 0.1) => { const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext; if (!AudioContextClass) return; const ctx = new AudioContextClass(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.type = type; osc.frequency.setValueAtTime(freq, ctx.currentTime); gain.gain.setValueAtTime(vol, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration); osc.connect(gain); gain.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + duration); }; const playTick = () => playTone(800, 'sine', 0.05, 0.03); const playStart = () => { playTone(600, 'triangle', 0.4, 0.1); setTimeout(() => playTone(800, 'triangle', 0.4, 0.1), 100); }; const playEnd = () => { playTone(500, 'square', 0.3, 0.1); setTimeout(() => playTone(700, 'square', 0.5, 0.15), 300); };
 
-      const secs = seconds % 60;
-      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  useEffect(() => {
+    if (currentSlide === slides.length - 1) {
+      triggerConfetti();
+    }
+  }, [currentSlide]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
   const slides = [
