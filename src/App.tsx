@@ -380,8 +380,8 @@ export default function App() {
           zIndex: 100,
         }}
       >
-        <img src="/Sanskar-Footer-logo.png" alt="Sanskar School" style={{ height: '55px', objectFit: 'contain' }} />
-        <img src="/skillizee-blue-logo.png" alt="Skillizee" style={{ height: '45px', objectFit: 'contain' }} />
+        <img src="/Sanskar-Footer-logo.png" alt="Sanskar School" style={{ height: '80px', objectFit: 'contain' }} />
+        <img src="/skillizee-blue-logo.png" alt="Skillizee" style={{ height: '65px', objectFit: 'contain' }} />
       </motion.header>
 
       {/* Floating Navigation Controls */}
